@@ -1,23 +1,24 @@
-## Case study: How does a bike-share navigate success?
+## Case study: How does a bike-share navigate success? (R project)
 
 **Synopsis: Cyclistic is a fictional bike-share company in Chicago, and the company's success depends on maximizing the number of annual memberships. To facilitate this, the team needs to understand the difference in trends between casual riders and annual members which require data insights and data visualizations. ** 
 
-### 1. Suggest hypotheses about the causes of observed phenomena
+### 1. Install and load up required packages
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+To start, packages must be installed (if not already) and loaded up. I'll be using tidyverse, janitor, and lubridate. 
 
 ```javascript
-if (isAwesome){
-  return true
-}
+install.packages('tidyverse')
+install.packages('janitor')
+install.packages('lubridate')
 ```
 
-### 2. Assess assumptions on which statistical inference will be based
+### 2. Upload data formatted in .csv files (ride id, ride type, start time, end time, start station, end station, coordinates, etc) and give them variables
 
 ```javascript
-if (isAwesome){
-  return true
-}
+jan2023 <- read_csv("2023_01.csv")
+feb2023 <- read_csv("2023_02.csv")
+mar2023 <- read_csv("2023_02.csv")
+...
 ```
 
 ### 3. Support the selection of appropriate statistical tools and techniques
