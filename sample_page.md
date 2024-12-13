@@ -21,11 +21,16 @@ mar2023 <- read_csv("2023_02.csv")
 ...
 ```
 
-### 3. Support the selection of appropriate statistical tools and techniques
+### 3. To combine the data into a single file, the column names need to match, the function colnames() will help with this.
 
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+```javascript
+colnames(jan2023)
+colnames(feb2023)
+colnames(mar2023)
+...
+```
 
-### 4. Provide a basis for further data collection through surveys or experiments
+### 4. To check for incongruencies, the function str() can be used. (Checks internal structure)
 
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
 
