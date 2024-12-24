@@ -112,4 +112,10 @@ all_trips_v2 <- all_trips_v2[complete.cases(all_trips_v2),]
 summary(all_trips_v2$ride_length)
 ```
 
+### 14. Calculate average ride time for each day
+
+```javascript
+aggregate(all_trips_v2$ride_length~all_trips_v2$member_casual + all_trips_v2$day_of_week, FUN=mean)
+```
+
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
