@@ -41,7 +41,7 @@ str(mar2023)
 
  ### 5. The columns ride_id and rideable_type can be stacked if they are converted to character
 
- ```javascript
+```javascript
 jan2023 <- mutate(jan2023, ride_id = as.character(ride_id),rideable_type = as.character(rideable_type))
 ```
 ### 6. Combine all data frames into a single variable
