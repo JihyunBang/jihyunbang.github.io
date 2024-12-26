@@ -112,10 +112,113 @@ all_trips_v2 <- all_trips_v2[complete.cases(all_trips_v2),]
 summary(all_trips_v2$ride_length)
 ```
 
-### 14. Calculate average ride time for each day
+### 14. Calculate average ride time for each day and rearrange days in order
 
 ```javascript
 aggregate(all_trips_v2$ride_length~all_trips_v2$member_casual + all_trips_v2$day_of_week, FUN=mean)
+
+all_trips_v2$day_of_week <- ordered(all_trips_v2$day_of_week, levels=c("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"))
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### 15. Arrange rider data by type and month, and hours/day
+
+```javascript
+all_trips_v2 %>%
+	mutate(month = month(started_at, label = TRUE)) %>%
+	group_by(member_casual, month) %>%
+	summarise(number_of_rides = n(), average_duration = mean(ride_length))%>%
+	arrange(member_casual, month)
+
+all_trips_v2 %>%
+	mutate(hours = hour(started_at)) %>%
+	group_by(member_casual,hours,day_of_week)%>%
+	summarise(number_of_rides = n(), average_duration = mean(ride_length))%>%
+	arrange(member_casual, hours)
+```
+
+### 16. Visualize # of rides by member and casual by weekday
+
+```javascript
+all_trips_v2 %>%
+	mutate(weekday = wday(started_at, label = TRUE)) %>%
+	group_by(member_casual, weekday) %>%
+	summarise(number_of_rides = n(), average_duration = mean(ride_length)) %>%
+	arrange(member_casual, weekday) %>%
+	ggplot(aes(x = weekday, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge")
+```
+
+### 17. Visualize # of rides by member and casual by month
+
+```javascript
+all_trips_v2 %>%
+	mutate(month = month(started_at, label = TRUE)) %>%
+	group_by(member_casual, month) %>%
+	summarise(number_of_rides = n(), average_duration = mean(ride_length)) %>%
+	arrange(member_casual, month) %>%
+	ggplot(aes(x = month, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge")
+```
+
+### 18. Visualize # of rides by member and casual by hours/day
+
+```javascript
+all_trips_v2 %>%
+	mutate(hours = hour(started_at)) %>%
+	mutate(weekday = wday(started_at, label = TRUE)) %>%
+	group_by(member_casual, hours, weekday) %>%
+	summarise(number_of_rides = n(), average_duration = mean(ride_length)) %>%
+	arrange(member_casual, hours) %>%
+	ggplot(aes(x = hours, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge")+ facet_wrap(~weekday)
+```
+
+### 19. Visualize total # of rides by member and casual
+
+```javascript
+all_trips_v2 %>%
+	group_by(member_casual)%>%
+	summarise(number_of_rides = n(), average_duration = mean(ride_length)) %>%
+	ggplot(aes(x = member_casual, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge")
+```
+
+### 20. Visualize average duration by member and casual
+
+```javascript
+all_trips_v2 %>%
+	group_by(member_casual)%>%
+	summarise(number_of_rides = n(), average_duration = mean(ride_length)) %>%
+	ggplot(aes(x = member_casual, y = average_duration, fill = member_casual)) + geom_col(position = "dodge")
+```
+
+### 21. Filter out casuals in data frame to find most popular stations by member
+
+```javascript
+member_all_trips_v2 <- filter(all_trips_v2, member_casual != "casual")
+
+member_all_trips_v2 %>%
+	group_by(member_casual, start_station_name)%>%
+	summarize(count=n())%>%
+	arrange(desc(count))
+```
+
+### 22. Filter out members in dataframe to find most popular stations by casual
+```javascript
+casual_all_trips_v2 <- filter(all_trips_v2, member_casual != "member")
+
+casual_all_trips_v2 %>%
+	group_by(member_casual, start_station_name)%>%
+	summarize(count=n())%>%
+	arrange(desc(count))
+```
+
+### 23. Find most popular stations in general
+```javascript
+all_trips_v2 %>%
+	group_by(member_casual, start_station_name)%>%
+	summarize(count=n())%>%
+	arrange(desc(count))
+```
+
+### 24. Export as csv file
+```javascript
+counts <- aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual + all_trips_v2$day_of_week, FUN = mean)
+write.csv(counts, file = 'avg_ride_length.csv')
+```
