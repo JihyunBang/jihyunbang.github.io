@@ -5,15 +5,13 @@
 ### Data Analytics Projects
 
 [Project 1 Title](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+<img src="https://i.etsystatic.com/19543171/r/il/f13c94/4513785165/il_1080xN.4513785165_h290.jpg"/>
 
 ---
-[Project 2 Title](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+
 
 ---
-[Project 3 Title](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+
 
 ---
 
