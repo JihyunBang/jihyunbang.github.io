@@ -5,8 +5,7 @@
 ### Data Analytics Projects
 
 [Case Study 1: Data Analytics for a Bike Share Company](/sample_page)
-
-<img src="https://cdn2.iconfinder.com/data/icons/budicon-travel-transportation-transport/25/small-bike-128.png"/>
+<img src=""/>
 
 ---
 
