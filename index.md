@@ -5,7 +5,6 @@
 ### Data Analytics Projects
 
 [Project 1 Title](/sample_page)
-
 <img src="https://cdn2.iconfinder.com/data/icons/budicon-travel-transportation-transport/25/small-bike-128.png"/>
 
 ---
