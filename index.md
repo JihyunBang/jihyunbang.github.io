@@ -6,7 +6,7 @@
 
 [Project 1 Title](/sample_page)
 
-<img src="https://cdn-icons-png.flaticon.com/256/931/931085.png"/>
+<img src="https://cdn2.iconfinder.com/data/icons/budicon-travel-transportation-transport/25/small-bike-128.png"/>
 
 ---
 
