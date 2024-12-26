@@ -4,7 +4,7 @@
 
 ### Data Analytics Projects
 
-[Case Study 1: Data Analytics for a Bike Share Company](/sample_page)
+- [Case Study 1: Data Analytics for a Bike Share Company](/sample_page)
 <img src=""/>
 
 ---
