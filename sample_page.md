@@ -12,7 +12,9 @@ install.packages('janitor')
 install.packages('lubridate')
 ```
 
-### 2. Upload data formatted in .csv files (ride id, ride type, start time, end time, start station, end station, coordinates, etc) and give them variables
+### 2. Upload data formatted in .csv files
+
+To upload data, we use read_csv() and assign it to a variable, such as "jan2023", "feb2023", and so on. The dataframe contains columns such as ride id, ride type, start time, start station, end station, coordinates, etc.
 
 ```javascript
 jan2023 <- read_csv("2023_01.csv")
@@ -21,7 +23,9 @@ mar2023 <- read_csv("2023_02.csv")
 ...
 ```
 
-### 3. To combine the data into a single file, the column names need to match, the function colnames() will help with this.
+### 3. Combine the data into a single file
+
+To combine data, the column names need to match. We can check for incongruencies with colnames().
 
 ```javascript
 colnames(jan2023)
@@ -30,7 +34,9 @@ colnames(mar2023)
 ...
 ```
 
-### 4. To check for incongruencies, the function str() can be used. (Checks internal structure)
+### 4. Check for incongruencies
+
+To check for incongruencies in the internal structure, we can use the function str().
 
 ```javascript
 str(jan2023)
@@ -39,18 +45,24 @@ str(mar2023)
 ...
 ```
 
-### 5. The columns ride_id and rideable_type can be stacked if they are converted to character
+### 5. Convert columns to character
+
+The columns ride_id and rideable_type can be stacked if they are converted to character.
 
 ```javascript
 jan2023 <- mutate(jan2023, ride_id = as.character(ride_id),rideable_type = as.character(rideable_type))
 ```
 ### 6. Combine all data frames into a single variable
 
+To combine data frames, we can use the function bind_rows()
+
 ```
 all_trips <- bind_rows(jan2023,feb2023,mar2023,apr2023,may2023,jun2023,jul2023,aug2023,spe2023,oct2023,nov2023,dec2023)
 ```
 
-### 7. Remove lat and long columns (Columns that are not needed can be removed this way)
+### 7. Remove unnecessary columns
+
+We can drop columns by name using the function select(-c()). In this case study, the latitude and longitude values are not needed.
 
 ```javascript
 all_trips <- all_trips %>%
@@ -58,6 +70,8 @@ all_trips <- all_trips %>%
 ```
 
 ### 8. Check colnames, # of rows, data dimensions, first rows, last rows, list of cols and data types, and summary to check information
+
+
 
 ```javascript
 colnames(all_trips)
