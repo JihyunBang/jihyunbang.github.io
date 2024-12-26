@@ -5,7 +5,7 @@
 ### Data Analytics Projects
 
 [Project 1 Title](/sample_page)
-<img src="[https://i.etsystatic.com/19543171/r/il/f13c94/4513785165/il_1080xN.4513785165_h290.jpg](https://cdn-icons-png.flaticon.com/256/931/931085.png)"/>
+<img src="https://cdn-icons-png.flaticon.com/256/931/931085.png"/>
 
 ---
 
