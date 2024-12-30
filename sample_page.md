@@ -69,9 +69,9 @@ all_trips <- all_trips %>%
   select(-c(start_lat,start_lng,end_lat,end_lng))
 ```
 
-### 8. Check colnames, # of rows, data dimensions, first rows, last rows, list of cols and data types, and summary to check information
+### 8. Check various data information
 
-
+We can do this with the functions colnames() to check column names, nrow() to check # of rows, dim() to check dimensions, head() to check first rows, tail() to check last rows, str() to check list of columns and data types, and summary() to check the summary.
 
 ```javascript
 colnames(all_trips)
@@ -85,12 +85,16 @@ summary(all_trips)
 
 ### 9. Change "Subscriber" to "Member", and "Customer" to "Casual"
 
+We can achieve this by using the mutate() function to modify the existing columns.
+
 ```javascript
 all_trips <- all_trips %>%
   mutate(member_casual = recode(member_casual,"Subscriber" = "member", "Customer" = "casual"))
 ```
 
 ### 10. Create columns for date, month, day and year
+
+This can be achieved through the as.Date() function to convert character objects to date objects. To store a date and time to find the hour, the function as.POSIXct() can be used. In the code below, %m, %d, %Y %A and %H represents month, day, year, day of week, and hour, respectively.
 
 ```javascript
 all_trips$date <- as.Date(all_trips$started_at)
@@ -101,7 +105,9 @@ all_trips$day_of_week <- format(as.Date(all_trips$date), "%A")
 all_trips$hour <- format(as.POSIXct(all_trips$date), "%H")
 ```
 
-### 11. Create ride_length calculation by finding difftime and check structure again
+### 11. Calculate ride length
+
+We can do this by using the function difftime() which is a function that can be used to return the difference of two times.
 
 ```javascript
 all_trips$ride_length <- difftime(all_trips$ended,at,all_trips$started_at)
@@ -109,7 +115,9 @@ all_trips$ride_length <- difftime(all_trips$ended,at,all_trips$started_at)
 str(all_trips)
 ```
 
-### 12. Check ride_length, if it's a factor, convert ride_length from factor to numeric
+### 12. Convert ride_length from factor to numeric
+
+To check if ride_length is factor is the first place, we can use the function is.factor() which will return a value of TRUE or FALSE. In this case, the return value was TRUE. To convert this to a numeric object, we can implement the function as.numeric(), and use the function is.numeric() function to verify if it was correctly converted.
 
 ```javascript
 is.factor(all_trips$ride_length)
