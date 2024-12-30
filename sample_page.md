@@ -47,7 +47,7 @@ str(mar2023)
 
 ### 5. Convert columns to character
 
-The columns ride_id and rideable_type can be stacked if they are converted to character using the mutate() and as.character() function.
+The columns ride_id and rideable_type can be stacked if they are converted to character using the mutate() and as.character() functions.
 
 ```javascript
 jan2023 <- mutate(jan2023, ride_id = as.character(ride_id),rideable_type = as.character(rideable_type))
