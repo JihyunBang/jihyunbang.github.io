@@ -117,7 +117,7 @@ str(all_trips)
 
 ### 12. Convert ride_length from factor to numeric
 
-To check if ride_length is factor is the first place, we can use the function is.factor() which will return a value of TRUE or FALSE. In this case, the return value was TRUE. To convert this to a numeric object, we can implement the function as.numeric(), and use the function is.numeric() function to verify if it was correctly converted.
+To check if ride_length is factor is the first place, we can use the function is.factor() which will return a value of TRUE or FALSE. To convert this to a numeric object, we can implement the function as.numeric(), and use the function is.numeric() function to verify if it was correctly converted.
 
 ```javascript
 is.factor(all_trips$ride_length)
@@ -125,7 +125,9 @@ all_trips$ride_length <- as.numeric(as.character(all_trips$ride_length))
 is.numeric(all_trips$ride_length)
 ```
 
-### 13. Creating a dataframe that doesn't have bad data, and check summary of the new dataframe
+### 13. Remove bad data
+
+We can do this by creating a new dataframe that doesn't have bad data by removing invalid station names, and ride length that is less than zero.
 
 ```javascript
 all_trips_v2 <- all_trips[!(all_trips$start_station_name == "HQ QR" | all_trips$ride_length<0),]
@@ -134,7 +136,9 @@ all_trips_v2 <- all_trips_v2[complete.cases(all_trips_v2),]
 summary(all_trips_v2$ride_length)
 ```
 
-### 14. Calculate average ride time for each day and rearrange days in order
+### 14. Calculate average ride time and rearrange days of the week
+
+The aggregate() function will help with computing summary statistics to find the average ride time and the ordered() function will order the days of the week.
 
 ```javascript
 aggregate(all_trips_v2$ride_length~all_trips_v2$member_casual + all_trips_v2$day_of_week, FUN=mean)
@@ -142,9 +146,16 @@ aggregate(all_trips_v2$ride_length~all_trips_v2$member_casual + all_trips_v2$day
 all_trips_v2$day_of_week <- ordered(all_trips_v2$day_of_week, levels=c("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"))
 ```
 
-### 15. Arrange rider data by type and month, and hours/day
+### 15. Arrange rider data
+
+To achieve this, we can use the mutate() function to create a column (weekday, month and hours in this code), then use the group_by() function to group the data. We can then summarise this data and retrieve the number of rides and mean ride length, then order the output by using the arrange() function.
 
 ```javascript
+all_trips_v2 %>%
+	mutate(weekday = wday(started_at, label = TRUE)) %>%
+	group_by(member_casual, weekday) %>%
+	summarise(number_of_rides = n(), average_duration = mean(ride_length))%>%
+	arrange(member_casual, weekday)
 all_trips_v2 %>%
 	mutate(month = month(started_at, label = TRUE)) %>%
 	group_by(member_casual, month) %>%
