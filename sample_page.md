@@ -10,6 +10,10 @@ To start, packages must be installed (if not already) and loaded up. I'll be usi
 install.packages('tidyverse')
 install.packages('janitor')
 install.packages('lubridate')
+
+library(tidyverse)
+library(janitor)
+library(lubridate)
 ```
 
 ### 2. Upload data formatted in .csv files
@@ -171,6 +175,8 @@ all_trips_v2 %>%
 
 ### 16. Visualize # of rides by member and casual by weekday
 
+We will use the function ggplot() to create visualizations. We will put the weekdays on the x axis and the number of rides on the y axis. We will use the geom_col() function to make a bar graph that will represent members and casuals.
+
 ```javascript
 all_trips_v2 %>%
 	mutate(weekday = wday(started_at, label = TRUE)) %>%
@@ -182,6 +188,8 @@ all_trips_v2 %>%
 
 ### 17. Visualize # of rides by member and casual by month
 
+We use the ggplot() function again, and we will assign the x axis as the month and the y axis as the number of rides. We will make a bar graph using the geom_col() function.
+
 ```javascript
 all_trips_v2 %>%
 	mutate(month = month(started_at, label = TRUE)) %>%
@@ -192,6 +200,8 @@ all_trips_v2 %>%
 ```
 
 ### 18. Visualize # of rides by member and casual by hours/day
+
+Using the ggplot() function, we assign the x axis as the hours and the y axis as the number of rides. Using the geom_col() function, we make a bar graph. Using the facet_wrap() function, we make a multi-panel plot.
 
 ```javascript
 all_trips_v2 %>%
@@ -205,6 +215,8 @@ all_trips_v2 %>%
 
 ### 19. Visualize total # of rides by member and casual
 
+With the ggplot() function, we assign the x axis as the type of user and the y axis as the number of rides. Using the geom_col() function, we make a bar graph.
+
 ```javascript
 all_trips_v2 %>%
 	group_by(member_casual)%>%
@@ -214,6 +226,8 @@ all_trips_v2 %>%
 
 ### 20. Visualize average duration by member and casual
 
+With the ggplot() function, we assign the x axis as the type of use and the y axis as the average duration. Using the geom_col() function, we make a bar graph.
+
 ```javascript
 all_trips_v2 %>%
 	group_by(member_casual)%>%
@@ -222,6 +236,8 @@ all_trips_v2 %>%
 ```
 
 ### 21. Filter out casuals in data frame to find most popular stations by member
+
+By using the filter() function, we are able to filter out casuals in the data to only return data related to members. First we group the data by using the group_by() function, then by using the summarize() function we can get the # of rides in each starting station. Then by arranging this data using the arrange() function in descending order, we can find the most frequently used/popular stations by members.
 
 ```javascript
 member_all_trips_v2 <- filter(all_trips_v2, member_casual != "casual")
@@ -233,6 +249,8 @@ member_all_trips_v2 %>%
 ```
 
 ### 22. Filter out members in dataframe to find most popular stations by casual
+
+By using the filter() function, we are able to filter out members in the data to only return data related to casuals. Like the previous step, we group the data by using the group_by() function, then by using the summarize() function we retrieve the # of rides in each starting station. Then we use the arrange() function in descending order to find the most popular stations by casuals.
 ```javascript
 casual_all_trips_v2 <- filter(all_trips_v2, member_casual != "member")
 
@@ -243,6 +261,9 @@ casual_all_trips_v2 %>%
 ```
 
 ### 23. Find most popular stations in general
+
+Since we are looking for the most popular stations in general, we do not need to use the filter() function, and we only group the data, summarize them, and arrange them in descending order.
+
 ```javascript
 all_trips_v2 %>%
 	group_by(member_casual, start_station_name)%>%
