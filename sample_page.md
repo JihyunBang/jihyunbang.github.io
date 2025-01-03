@@ -277,4 +277,14 @@ all_trips_v2 %>%
 counts <- aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual + all_trips_v2$day_of_week, FUN = mean)
 write.csv(counts, file = 'avg_ride_length.csv')
 ```
+**Conclusion: It seems that most members are workers as there is a peak of bike usage at around 8-9 A.M. and another peak at around 5 P.M. The total number of rides for casuals are lower but the average ride duration is higher which leads me to believe that there is a likely possibility that the casuals are consisted of tourists visiting the area.
+
+Recommendations (Note: The director of marketing is focusing on maximizing the number of annual memberships)
+
+1. To maximize the number of annual memberships, the company can implement a ride charge that is correlated to ride length/duration. The trend shows that the average ride duration is considerably higher in casuals. By increasing the ride charge by duration, the casual bike users would be inclined to purchase an annual membership.
+
+2. Another recommendation to maximize the number of annual memberships is to host a seasonal sale. By doing a summer/spring/autumn sale, more casuals may be inclined to purchase an annual membership, and there may be a surge of profit increase during the seasonal sales.
+
+3. Advertisements could also help in maximizing the number of annual memberships, and through the data we were able to find the most popular stations used by casual bike users (See step 22). By putting ads, we would be increasing the exposure of annual membership information to our target audience, which is the casual bike riders.**
+
 To see a more in-depth, stylized visualization of this case study on TableauPublic: <https://public.tableau.com/app/profile/edward.bang/viz/CyclisticBike-CaseStudy/Dashboard1>
