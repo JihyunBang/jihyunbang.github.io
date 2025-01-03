@@ -160,6 +160,7 @@ all_trips_v2 %>%
 	group_by(member_casual, weekday) %>%
 	summarise(number_of_rides = n(), average_duration = mean(ride_length))%>%
 	arrange(member_casual, weekday)
+
 all_trips_v2 %>%
 	mutate(month = month(started_at, label = TRUE)) %>%
 	group_by(member_casual, month) %>%
