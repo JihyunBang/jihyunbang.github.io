@@ -187,6 +187,9 @@ all_trips_v2 %>%
 	ggplot(aes(x = weekday, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge")
 ```
 
+This code will create a bar graph that looks like this:
+<img src="https://github.com/JihyunBang/jihyunbang.github.io/blob/main/Screenshot%202025-01-07%20085442.png?raw=true">
+
 ### 17. Visualize # of rides by member and casual by month
 
 We use the ggplot() function again, and we will assign the x axis as the month and the y axis as the number of rides. We will make a bar graph using the geom_col() function.
