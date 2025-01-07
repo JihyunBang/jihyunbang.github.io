@@ -188,7 +188,7 @@ all_trips_v2 %>%
 ```
 
 This code will create a bar graph that looks like this:
-<img src="https://github.com/JihyunBang/jihyunbang.github.io/blob/main/Screenshot%202025-01-07%20085442.png?raw=true">
+<img src="https://github.com/JihyunBang/jihyunbang.github.io/blob/main/Screenshot%202025-01-07%20084739.png?raw=true">
 
 ### 17. Visualize # of rides by member and casual by month
 
@@ -202,6 +202,9 @@ all_trips_v2 %>%
 	arrange(member_casual, month) %>%
 	ggplot(aes(x = month, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge")
 ```
+
+This code will create a bar graph that looks like this:
+<img src="https://github.com/JihyunBang/jihyunbang.github.io/blob/main/Screenshot%202025-01-07%20084850.png?raw=true">
 
 ### 18. Visualize # of rides by member and casual by hours/day
 
@@ -217,6 +220,9 @@ all_trips_v2 %>%
 	ggplot(aes(x = hours, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge")+ facet_wrap(~weekday)
 ```
 
+This code will create a bar graph that looks like this:
+<img src="https://github.com/JihyunBang/jihyunbang.github.io/blob/main/Screenshot%202025-01-07%20084934.png?raw=true">
+
 ### 19. Visualize total # of rides by member and casual
 
 With the ggplot() function, we assign the x axis as the type of user and the y axis as the number of rides. Using the geom_col() function, we make a bar graph.
@@ -228,6 +234,9 @@ all_trips_v2 %>%
 	ggplot(aes(x = member_casual, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge")
 ```
 
+This code will create a bar graph that looks like this:
+<img src="https://github.com/JihyunBang/jihyunbang.github.io/blob/main/Screenshot%202025-01-07%20085002.png?raw=true">
+
 ### 20. Visualize average duration by member and casual
 
 With the ggplot() function, we assign the x axis as the type of use and the y axis as the average duration. Using the geom_col() function, we make a bar graph.
@@ -238,6 +247,9 @@ all_trips_v2 %>%
 	summarise(number_of_rides = n(), average_duration = mean(ride_length)) %>%
 	ggplot(aes(x = member_casual, y = average_duration, fill = member_casual)) + geom_col(position = "dodge")
 ```
+
+This code will create a bar graph that looks like this:
+<img src="https://github.com/JihyunBang/jihyunbang.github.io/blob/main/Screenshot%202025-01-07%20085442.png?raw=true">
 
 ### 21. Filter out casuals in data frame to find most popular stations by member
 
